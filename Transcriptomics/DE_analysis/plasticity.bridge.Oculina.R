@@ -106,7 +106,7 @@ permanova_terms <- adonis2(
 permanova_terms
 p_year <- permanova_terms["year", "Pr(>F)"]
 p_condition <- permanova_terms["condition", "Pr(>F)"]
-p_text <- paste0("P_Year = ", p_year,"\nP_Condition = ", p_condition) 
+p_text <- paste0("P_Experiment = ", p_year,"\nP_Condition = ", p_condition) 
 # ggplot code
 pt_to_mm <- function(pt) pt / 2.845
 
@@ -167,7 +167,7 @@ permanova_terms<-adonis2(
 permanova_terms
 p_year <- permanova_terms["year", "Pr(>F)"]
 p_condition <- permanova_terms["condition", "Pr(>F)"]
-p_text <- paste0("P_Year = ", p_year,"\nP_Condition = ", p_condition) 
+p_text <- paste0("P_Experiment = ", p_year,"\nP_Condition = ", p_condition) 
 
 # ggplot code
 pca_cor <- ggplot(pca_clean_df, aes(x = PC1, y = PC2, color = Condition, shape = Year)) +
@@ -615,11 +615,22 @@ pca_cor <- pca_cor +
     shape = "Experiment"
   )
 
+p_axis_density_letters <- p_axis_density_letters +
+  theme(legend.position = "none")
 
-combined_pca_plast <- (pca_uncor + pca_cor) / p_axis_density_letters +
+combined_pca <- pca_uncor + pca_cor +
+  plot_layout(guides = "collect") &
+  theme(
+    legend.position = "bottom",
+    legend.box = "horizontal"
+  )
+
+
+combined_pca_plast <- (combined_pca) / p_axis_density_letters +
   plot_annotation(tag_levels = 'A') &
   theme(plot.tag = element_text(size = 9, face = "bold"),
         plot.margin = margin(t = 10, r = 5, b = 5, l = 5))
+
 
 combined_pca_plast
 
@@ -627,7 +638,7 @@ ggsave(
   "/home/gospozha/haifa/hiba/op_align_new/plasticity/combined_pca_plast2.pdf",
   plot = combined_pca_plast,
   width = 14,
-  height = 11,
+  height = 14,
   units = "cm",
   device = "pdf",
   useDingbats = FALSE
@@ -636,7 +647,7 @@ ggsave(
   "/home/gospozha/haifa/hiba/op_align_new/plasticity/combined_pca_plast2.jpg",
   plot = combined_pca_plast,
   width = 14,
-  height = 11,
+  height = 14,
   units = "cm",
   device = "jpg"
 )
