@@ -5,10 +5,10 @@ library("WGCNA")
 library("flashClust")
 library("gridExtra")
 library("ComplexHeatmap")
-library("goseq")
+#library("goseq")
 library("dplyr")
 library("clusterProfiler")
-library("simplifyEnrichment")
+#library("simplifyEnrichment")
 library(dendsort)
 library(edgeR)
 library(multcompView)
@@ -18,7 +18,7 @@ library(tibble)
 library(ggpattern)
 
 setwd("/home/gospozha/haifa/hiba/op_align_new/wgcna")
-
+load(file="010426.13.70.RData")
 
 #### 25 v 10 v 5 ####
 #### reading files ####
@@ -232,19 +232,122 @@ MEtreePlot = plot(METree, main = "Clustering of module eigengenes", xlab = "", s
 ht=Heatmap(moduleTraitCor, name = "Eigengene", column_title = "Module-trait eigengene correlation", 
            col = blueWhiteRed(50), 
            row_names_side = "left", row_dend_side = "left",
-           width = unit(3, "in"), height = unit(7, "in"), 
+           width = unit(4.2, "cm"), height = unit(14, "cm"), 
            column_order = 1:3, column_dend_reorder = FALSE, cluster_columns = hclust(dist(t(moduleTraitCor)), method = "average"), column_split = 6, column_dend_height = unit(0.5, "in"),
            #cluster_rows = METree, row_split = 6, row_gap = unit(2.5, "mm"), border = TRUE,
            cell_fun = function(j, i, x, y, w, h, col) {
              if(heatmappval[i, j] <= 0.05) {
-               grid.text(sprintf("%s", heatmappval[i, j]), x, y, gp = gpar(fontsize = 8, fontface = "bold"))
+               grid.text(sprintf("%s", heatmappval[i, j]), x, y, gp = gpar(fontsize = 6, fontface = "bold"))
              }
              else {
-               grid.text(sprintf("%s", heatmappval[i, j]), x, y, gp = gpar(fontsize = 8, fontface = "plain"))
+               grid.text(sprintf("%s", heatmappval[i, j]), x, y, gp = gpar(fontsize = 6, fontface = "plain"))
              }},
-           column_names_gp =  gpar(fontsize = 10),
-           row_names_gp = gpar(fontsize = 10, alpha = 0.75, border = TRUE, fill = htmap.colors))
+           column_names_gp =  gpar(fontsize = 6),
+           row_names_gp = gpar(fontsize = 6, alpha = 0.75, border = TRUE, fill = htmap.colors))
 ht <- draw(ht)
+
+library(ggplotify)
+ht_gg <- as.ggplot(function() {
+  draw(ht, heatmap_legend_side = "right")
+})
+
+
+# horizontal heatmap
+moduleTraitCor_t <- t(moduleTraitCor)
+heatmappval_t <- t(heatmappval)
+ht <- Heatmap(
+  moduleTraitCor_t,
+  name = "Eigengene",
+  #column_title = "Module-trait eigengene correlation",
+  col = blueWhiteRed(50),
+  
+  row_names_side = "left",
+  column_names_rot = 45,
+  
+  width = unit(14, "cm"),
+  height = unit(1.8, "cm"),
+  
+  cluster_rows = TRUE,
+  cluster_columns = TRUE,
+  
+  cell_fun = function(j, i, x, y, w, h, col) {
+    grid.text(
+      sprintf("%s", heatmappval_t[i, j]),
+      x, y,
+      gp = gpar(
+        fontsize = 6,
+        fontface = ifelse(heatmappval_t[i, j] <= 0.05, "bold", "plain")
+      )
+    )
+  },
+  
+  column_names_gp = gpar(fontsize = 7),
+  row_names_gp = gpar(fontsize = 7),
+  column_title_gp = gpar(fontsize = 7, fontface = "bold"),
+  
+  heatmap_legend_param = list(
+    title_gp = gpar(fontsize = 6),
+    labels_gp = gpar(fontsize = 6)
+  )
+)
+
+draw(ht)
+
+## try colored design
+module_cols <- gsub("^ME", "", colnames(moduleTraitCor_t))
+
+top_anno <- HeatmapAnnotation(
+  Module = anno_simple(
+    module_cols,
+    col = setNames(module_cols, module_cols),
+    height = unit(1.5, "mm")
+  ),
+  show_annotation_name = FALSE
+)
+
+ht <- Heatmap(
+  moduleTraitCor_t,
+  name = "Eigengene",
+  col = blueWhiteRed(50),
+  
+  top_annotation = top_anno,
+  
+  row_names_side = "left",
+  column_names_rot = 45,
+  
+  width = unit(14, "cm"),
+  height = unit(1.8, "cm"),
+  
+  cluster_rows = TRUE,
+  cluster_columns = TRUE,
+  
+  cell_fun = function(j, i, x, y, w, h, col) {
+    grid.text(
+      sprintf("%s", heatmappval_t[i, j]),
+      x, y,
+      gp = gpar(
+        fontsize = 6,
+        fontface = ifelse(heatmappval_t[i, j] <= 0.05, "bold", "plain")
+      )
+    )
+  },
+  
+  column_names_gp = gpar(
+    fontsize = 7,
+    col = "black"
+  ),
+  
+  row_names_gp = gpar(fontsize = 7),
+  column_title_gp = gpar(fontsize = 7, fontface = "bold"),
+  
+  heatmap_legend_param = list(
+    title_gp = gpar(fontsize = 6),
+    labels_gp = gpar(fontsize = 6)
+  )
+)
+
+draw(ht)
+
 ###  Gene relationship to trait and important modules: Gene Significance and Module Membership
 
 #Colors of the modules
@@ -284,9 +387,6 @@ geneInfo <- geneInfo0[order(geneInfo0$moduleColor), ]
 geneInfo <- left_join(geneInfo, moduleCluster, by = "moduleColor")
 
 write.csv(geneInfo, file = "geneInfo.14.70.csv", row.names = FALSE)
-
-#save.image(file="rin/070725.vst.RData") 
-#load("rin/070725.vst.RData")
 
 
 #### hub genes ####
@@ -377,6 +477,141 @@ trait_assoc %>%
 write.csv(traitcor, "module.trait.corr.csv", row.names = FALSE)
 
 
+save.image(file="010426.13.70.RData") 
+#load("rin/070725.vst.RData")
+
+#### bar plot for modules ####
+# modules - black, greenyellow, blue, yellow
+target_modules <- c("MEblack", "MEgreenyellow", "MEblue", "MEyellow")
+
+# subset MEs directly instead of averaging them into clusters
+# transpose immediately because limma expects features as rows and samples as columns
+expressionProfile_data <- as.data.frame(t(MEs[, target_modules]))
+
+# set up the design matrix using your numeric conditions
+# ensure condition is a factor so limma handles it correctly
+MetaData$condition <- factor(MetaData$condition, levels = c("5", "10", "25"))
+
+des_mat <- model.matrix(~ 0 + MetaData$condition)
+colnames(des_mat) <- c("Group5", "Group10", "Group25") # avoids R syntax bugs with pure numbers
+
+# run the limma pipeline with explicit contrasts
+fit <- limma::lmFit(expressionProfile_data, design = des_mat)
+
+# define the exact pairwise comparisons you want to test
+contrast.matrix <- makeContrasts(
+  Group10_vs_Group5  = Group10 - Group5,
+  Group25_vs_Group10 = Group25 - Group10,
+  Group25_vs_Group5  = Group25 - Group5,
+  levels = des_mat
+)
+
+fit2 <- limma::contrasts.fit(fit, contrast.matrix)
+fit2 <- limma::eBayes(fit2)
+
+# loop over each WGCNA module and get adjusted p-values for all contrasts
+conditions <- c("5", "10", "25")
+contrasts <- combn(conditions, 2, simplify = FALSE)
+
+module_pval_lists <- vector("list", length(target_modules))
+names(module_pval_lists) <- target_modules
+
+for (i in seq_along(target_modules)) {
+  mod <- target_modules[i]
+  pvals <- c()
+  
+  for (con in contrasts) {
+    # generate the contrast name to match our matrix above (e.g., "Group10_vs_Group5")
+    sorted_con <- sort(as.numeric(con), decreasing = TRUE)
+    contrast_name <- paste0("Group", sorted_con[1], "_vs_Group", sorted_con[2])
+    
+    # extract the p-value for the specific module safely
+    tt <- topTable(fit2, coef = contrast_name, number = Inf, adjust.method = "BH")
+    pval <- tt[mod, "adj.P.Val"]
+    
+    label <- paste(con, collapse = "-")
+    pvals[label] <- pval
+  }
+  
+  module_pval_lists[[mod]] <- pvals
+}
+
+# generate significance letters for each module
+module_letters <- lapply(module_pval_lists, function(pv) {
+  multcompLetters(pv, threshold = 0.05)$Letters
+})
+
+# pivot data for plotting/visualization
+eigengenes_long <- expressionProfile_data %>%
+  rownames_to_column("Module") %>%
+  pivot_longer(-Module, names_to = "Sample", values_to = "Eigengene") %>%
+  left_join(MetaData %>% select(Sample = id, Condition = condition), by = "Sample")
+
+
+#### joint plots for all clusters ####
+#  modules to include 
+modules_to_plot <- c("MEblack", "MEgreenyellow", "MEblue", "MEyellow")
+
+# filter long data to keep only the selected 4 modules
+eigengenes_subset <- eigengenes_long %>% 
+  filter(Module %in% modules_to_plot)
+
+# convert module_letters list into a long dataframe for ggplot annotations
+annotation_letters <- bind_rows(
+  lapply(names(module_letters), function(mod) {
+    data.frame(
+      Module = mod,
+      Condition = names(module_letters[[mod]]),
+      Letter = module_letters[[mod]]
+    )
+  }),
+  .id = "id"
+) %>% 
+  filter(Module %in% modules_to_plot)
+
+# calculate the highest y point to place the text safely above the boxplots
+y_pos <- eigengenes_subset %>%
+  group_by(Module, Condition) %>%
+  summarise(y = max(Eigengene) + 0.05, .groups = "drop")
+
+# merge the calculated y coordinates with your significance letters
+annotation_letters <- annotation_letters %>%
+  left_join(y_pos, by = c("Module", "Condition"))
+
+# set order for conditions so the numeric values display chronologically
+annotation_letters$Condition <- factor(annotation_letters$Condition, levels = c("5", "10", "25"))
+eigengenes_subset$Condition <- factor(eigengenes_subset$Condition, levels = c("5", "10", "25"))
+
+# generate the multi-panel pattern boxplot
+bars <- ggplot(eigengenes_subset, aes(x = Condition, y = Eigengene)) +
+  geom_boxplot(
+    aes(fill = Condition),
+    width = 0.4, # slightly widened from 0.1 to look better with 3 groups instead of 6
+    alpha = 1,
+    lwd = 0.4
+  ) +
+  geom_text(
+    data = annotation_letters,
+    aes(x = Condition, y = y, label = Letter),
+    nudge_y = 0.05 * (max(eigengenes_subset$Eigengene) - min(eigengenes_subset$Eigengene)),
+    inherit.aes = FALSE
+  ) +
+  facet_wrap(~ Module, ncol = 2, scales = "free_y") + # set to 2 columns for a balanced 2x2 grid
+  labs(
+    #title = "Eigengene expression across modules",
+    y = "Eigengene expression",
+    x = "Condition"
+  ) +
+  guides(fill = "none", pattern = "none", color = "none") + # updated guide syntax from FALSE to 'none'
+  theme_classic(base_size = 12) +
+  theme(
+    strip.text = element_text(face = "bold"), 
+    title = element_text(size = 11)
+  )
+
+print(bars)
+ggsave("barplots.jpg", bars)
+ggsave("barplots.pdf", bars, width = 5, height = 5)
 save.image(file="010426.13.70.RData") 
 #load("rin/070725.vst.RData")
 
