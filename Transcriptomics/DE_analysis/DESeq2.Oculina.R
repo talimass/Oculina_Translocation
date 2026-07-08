@@ -20,9 +20,10 @@ library(reshape2)
 library(patchwork)
 library(stringr)
 library(ggpattern)
-library(inDAGO)
+#(inDAGO)
 library(readr)
-
+#library(apeglm)
+library(ashr)
 # setting working directory 
 setwd("/home/gospozha/haifa/hiba/op_align_new/")
 
@@ -153,9 +154,9 @@ qplot(log10(gene_means + 1), log10(gene_vars + 1),
 
 saturation_plot <- inDAGO:::Saturation(
   matrix = countData, 
-  method = "sampling", # Specify your counting method if required by the package version
-  max_reads = 30000000,   # Specify max reads if needed, adjust as appropriate
-  palette = "Polychrome::palette36"          # Choose a color palette
+  method = "sampling", 
+  max_reads = 30000000,  
+  palette = "Polychrome::palette36"          
 )
 
 # Display the plot
@@ -217,16 +218,11 @@ dds <- readRDS(file = "dds_30vs1.rds")
 #### PCA and sample distances using rlog ####
 
 # estimating size factors to determine if it's better to use rlog
-# to transform our data. rlog is more robust if size factors differ a lot
 SF <- estimateSizeFactors(dds) 
 print(sizeFactors(SF))
 
-# the same using rlog transformation
+# vst transformation
 rlog <- vst(dds)
-#saveRDS(rlog, file = "rlog_site_rrna_rin_condition.rds")
-#rlog <- readRDS(file = "rlog_site_rrna_rin_condition.rds")
-# since vst does not remove variation that can be associated with covariates, 
-# we manually remove the effect of covariates to be able to visualize it on PCA
 mat <- assay(rlog)
 # PCA plot
 pcaData <- plotPCA(rlog, intgroup=c("condition"), ntop = 500, returnData=TRUE)
@@ -328,8 +324,8 @@ de_summary
 head(de_genes_table)
 
 # save
-write.csv(de_summary, "de_summary_30v2.csv", row.names = FALSE)
-write.csv(de_genes_table, "de_genes_with_ids_30v1.csv", row.names = FALSE)
+# write.csv(de_summary, "de_summary_30v2.csv", row.names = FALSE)
+# write.csv(de_genes_table, "de_genes_with_ids_30v1.csv", row.names = FALSE)
 
 
 #### files by contrast (not separated) ####
@@ -341,7 +337,45 @@ res.ordered <- data.frame(res) %>%
   arrange(padj) %>%
   mutate(Expression = case_when(log2FoldChange > log(1) ~ "Up",
                                 log2FoldChange < -log(1) ~ "Down"))
-write.csv(res.ordered, "de_genes_30v1.csv")
+# write.csv(res.ordered, "de_genes_30v1.csv")
+
+#### unfiltered files by contrast (not separated) ####
+res <- results(dds, contrast = c("condition", "30", "1"))
+summary(res)
+
+res.ordered <- data.frame(res) %>%
+  #filter(padj<.05 & abs(log2FoldChange)>=1)  %>%
+  arrange(log2FoldChange) %>%
+  rownames_to_column("gene_id")
+
+# annotation table
+annot <- read_tsv("gene_annotations_description.tsv", show_col_types = FALSE) %>%
+  select(gene_id, ipr, description) %>%
+  distinct(gene_id, .keep_all = TRUE) 
+
+res.ordered.annot <- res.ordered %>%
+    left_join(annot, by="gene_id")
+
+# write.csv(res.ordered.annot, "de_genes_30v1.unfiltered.csv")
+
+#### lfcShrink ####
+resLFC <- lfcShrink(dds, coef="condition_30_vs_1", type="ashr")
+summary(resLFC)
+
+res.ordered <- data.frame(resLFC) %>%
+  #filter(padj<.05 & abs(log2FoldChange)>=1)  %>%
+  arrange(log2FoldChange) %>%
+  rownames_to_column("gene_id")
+
+# annotation table
+annot <- read_tsv("gene_annotations_description.tsv", show_col_types = FALSE) %>%
+  select(gene_id, ipr, description) %>%
+  distinct(gene_id, .keep_all = TRUE) 
+
+res.ordered.annot <- res.ordered %>%
+  left_join(annot, by="gene_id")
+
+# write.csv(res.ordered.annot, "de_genes_30v1.unfiltered.lfcshrink.csv")
 #### 25 vs 5 vs 10 ####
 # reading count matrix from a file
 countData  <- read.csv2('CountMatrix.csv', header=TRUE, row.names=1, sep=',', check.names = F)
@@ -387,16 +421,12 @@ saveRDS(dds, file = "dds_25vs5vs10.rds")
 dds <- readRDS(file = "dds_25vs5vs10.rds")
 
 # estimating size factors to determine if it's better to use rlog
-# to transform our data. rlog is more robust if size factors differ a lot
 SF <- estimateSizeFactors(dds) 
 print(sizeFactors(SF))
 
-# the same using rlog transformation
+# vst transformation
 rlog <- vst(dds)
-#saveRDS(rlog, file = "rlog_site_rrna_rin_condition.rds")
-#rlog <- readRDS(file = "rlog_site_rrna_rin_condition.rds")
-# since vst does not remove variation that can be associated with covariates, 
-# we manually remove the effect of covariates to be able to visualize it on PCA
+
 mat <- assay(rlog)
 # PCA plot
 pcaData <- plotPCA(rlog, intgroup=c("condition"), ntop = 500, returnData=TRUE)
@@ -480,9 +510,9 @@ de_summary
 head(de_genes_table)
 
 # save
-
-write.csv(de_summary, "de_summary_10v25v5.csv", row.names = FALSE)
-write.csv(de_genes_table, "de_genes_with_ids_10v25v5.csv", row.names = FALSE)
+# 
+# write.csv(de_summary, "de_summary_10v25v5.csv", row.names = FALSE)
+# write.csv(de_genes_table, "de_genes_with_ids_10v25v5.csv", row.names = FALSE)
 
 #### files by contrast (not separated) ####
 res <- results(dds, contrast = c("condition", "25", "5"), alpha = 0.05)
@@ -493,7 +523,7 @@ res.ordered <- data.frame(res) %>%
   arrange(padj) %>%
   mutate(Expression = case_when(log2FoldChange > log(1) ~ "Up",
                                 log2FoldChange < -log(1) ~ "Down"))
-write.csv(res.ordered, "de_genes_25v5.csv")
+# write.csv(res.ordered, "de_genes_25v5.csv")
 
 res <- results(dds, contrast = c("condition", "25", "10"), alpha = 0.05)
 summary(res)
@@ -503,7 +533,7 @@ res.ordered <- data.frame(res) %>%
   arrange(padj) %>%
   mutate(Expression = case_when(log2FoldChange > log(1) ~ "Up",
                                 log2FoldChange < -log(1) ~ "Down"))
-write.csv(res.ordered, "de_genes_25v10.csv")
+# write.csv(res.ordered, "de_genes_25v10.csv")
 
 res <- results(dds, contrast = c("condition", "10", "5"), alpha = 0.05)
 summary(res)
@@ -513,10 +543,93 @@ res.ordered <- data.frame(res) %>%
   arrange(padj) %>%
   mutate(Expression = case_when(log2FoldChange > log(1) ~ "Up",
                                 log2FoldChange < -log(1) ~ "Down"))
-write.csv(res.ordered, "de_genes_10v5.csv")
+# write.csv(res.ordered, "de_genes_10v5.csv")
+
+#### unfiltered files by contrast (not separated) ####
+
+# annotation table
+annot <- read_tsv("gene_annotations_description.tsv", show_col_types = FALSE) %>%
+  select(gene_id, ipr, description) %>%
+  distinct(gene_id, .keep_all = TRUE) 
+
+res <- results(dds, contrast = c("condition", "25", "10"))
+summary(res)
+
+res.ordered <- data.frame(res) %>%
+  #filter(padj<.05 & abs(log2FoldChange)>=1)  %>%
+  arrange(log2FoldChange) %>%
+  rownames_to_column("gene_id")
+
+res.ordered.annot <- res.ordered %>%
+  left_join(annot, by="gene_id")
+
+# write.csv(res.ordered.annot, "de_genes_25v10.unfiltered.csv")
+
+res <- results(dds, contrast = c("condition", "25", "5"))
+summary(res)
+
+res.ordered <- data.frame(res) %>%
+  #filter(padj<.05 & abs(log2FoldChange)>=1)  %>%
+  arrange(log2FoldChange) %>%
+  rownames_to_column("gene_id")
+
+res.ordered.annot <- res.ordered %>%
+  left_join(annot, by="gene_id")
+
+# write.csv(res.ordered.annot, "de_genes_25v5.unfiltered.csv")
+
+res <- results(dds, contrast = c("condition", "10", "5"))
+summary(res)
+
+res.ordered <- data.frame(res) %>%
+  #filter(padj<.05 & abs(log2FoldChange)>=1)  %>%
+  arrange(log2FoldChange) %>%
+  rownames_to_column("gene_id")
+
+res.ordered.annot <- res.ordered %>%
+  left_join(annot, by="gene_id")
+
+# write.csv(res.ordered.annot, "de_genes_10v5.unfiltered.csv")
+
+#### lfcShrink ####
+resLFC <- lfcShrink(dds, contrast = c("condition", "25", "10"), type="ashr")
+
+res.ordered <- data.frame(resLFC) %>%
+  #filter(padj<.05 & abs(log2FoldChange)>=1)  %>%
+  arrange(log2FoldChange) %>%
+  rownames_to_column("gene_id")
+
+res.ordered.annot <- res.ordered %>%
+  left_join(annot, by="gene_id")
+
+# write.csv(res.ordered.annot, "de_genes_25v10.unfiltered.lfcshrink.csv")
+
+resLFC <- lfcShrink(dds, coef="condition_25_vs_5", type="ashr")
+
+res.ordered <- data.frame(resLFC) %>%
+  #filter(padj<.05 & abs(log2FoldChange)>=1)  %>%
+  arrange(log2FoldChange) %>%
+  rownames_to_column("gene_id")
+
+res.ordered.annot <- res.ordered %>%
+  left_join(annot, by="gene_id")
+
+# write.csv(res.ordered.annot, "de_genes_25v5.unfiltered.lfcshrink.csv")
 
 
-#### biomineralization 30v1 ####
+resLFC <- lfcShrink(dds, coef="condition_10_vs_5", type="ashr")
+
+res.ordered <- data.frame(resLFC) %>%
+  #filter(padj<.05 & abs(log2FoldChange)>=1)  %>%
+  arrange(log2FoldChange) %>%
+  rownames_to_column("gene_id")
+
+res.ordered.annot <- res.ordered %>%
+  left_join(annot, by="gene_id")
+
+# write.csv(res.ordered.annot, "de_genes_10v5.unfiltered.lfcshrink.csv")
+
+ #### biomineralization 30v1 ####
 dds <- readRDS(file = "dds_30vs1.rds")
 # the same using rlog transformation
 rlog <- vst(dds)
@@ -641,9 +754,10 @@ contrast_levels <- c("10v5","25v10", "30v1")
 
 # colors and shapes
 contrast_colors <- c(
-  "10v5"  = "#ff7f00",
-  "25v10" = "#e31a1c",
-  "30v1"  = "#1f78b4"
+  "30v1"  = "#00A6ED",
+  "25v5"  = "#009E73",
+  "25v10" = "#ee65aa",
+  "10v5"  = "#FFB400"
 )
 
 contrast_shapes <- c(
@@ -756,20 +870,31 @@ res_long <- combined_df %>%
   mutate(
     gene_id = `...1`,
     gene_name = ifelse(is.na(name) | name == "", "unannotated", name),
-    facet_label = paste0(gene_name, " \n (", gene_id, ")")
-  )
+    facet_label = paste0(gene_name, " \n (", gene_id, ")"),
+    contrast = dplyr::recode(
+      contrast,
+      "10v5"  = "T10vC3",
+      "25v5"  = "T25vC3",
+      "25v10" = "T25vT10",
+      "30v1"  = "N30vN3"
+  ))
 
 # order contrasts
-contrast_levels <- c("10v5","25v10", "25v5", "30v1")
+contrast_levels <- c("N30vN3", "T10vC3", "T25vC3", "T25vT10" )
 
 # colors and shapes
+# contrast_colors <- c(
+#   "DvS"  = "#00A6ED",
+#   "25v3"  = "#009E73",
+#   "25v10" = "#ee65aa",
+#   "10v3"  = "#FFB400"
+# )
 contrast_colors <- c(
-  "10v5"  = "#ff7f00",
-  "25v10" = "#e31a1c",
-  "25v5" = "#33a02c",
-  "30v1"  = "#1f78b4"
+  "N30vN3"  = "#00A6ED",
+  "T25vC3"  = "#009E73",
+  "T25vT10" = "#F393C3",
+  "T10vC3"  = "#FFB400"
 )
-
 # shapes for category
 # change names here if your real category labels are slightly different
 category_shapes <- c(
@@ -814,7 +939,7 @@ biomin_bar <- ggplot(
 
 biomin_bar
 ggsave("biomin_somp.genes.pdf", biomin_bar, width = 6.5, height = 5)
-
+saveRDS(biomin_bar, "biomin_somp_barplot.RDS")
 
 #### annotation with gene name ####
 deg_files <- list(
@@ -840,3 +965,137 @@ for (nm in names(deg_files)) {
   
   write_csv(deg_annot, paste0("de_genes_", nm, "_annotated.csv"))
 }
+
+
+
+#### LRT and patterns ####
+dds <- DESeqDataSetFromMatrix(countData = countData,
+                              colData = MetaData,
+                              design = ~ condition)
+
+dds_LRT <- DESeq(dds, test = "LRT", reduced= ~1)
+res_lrt <- results(object = dds_LRT, )
+summary(res_lrt)
+
+res.ordered <- res_lrt[order(res_lrt$padj),]
+# adding Expression column to show the direction of change in expression, if present.
+# here, the cutoff values are 0.1 for padj and 1.5 for log2FC.
+res.ordered <- data.frame(res.ordered) %>%
+  mutate(Expression = case_when(log2FoldChange >= log(1) & padj <= 0.05 ~ "Upregulated",
+                                log2FoldChange <= -log(1) & padj <= 0.05 ~ "Downregulated",
+                                TRUE ~ "Unchanged"))
+head(res.ordered)
+write.csv(res.ordered, file="LRT.DE.genes.csv")
+
+vst <-  read.csv("25vs5vs10.vst.counts.csv", row.names = 1)
+topgenes <- head(rownames(res_lrt[order(res_lrt$padj), ]), 50)
+mat <- vst[topgenes,]
+mat <- na.omit(mat)
+mat <- t(scale(t(mat)))
+df <- as.data.frame(colData(dds_LRT)[,c("condition")])
+
+pheatmap(mat,    
+         annotation_col = df)
+
+
+# 1. Filter the VST matrix for significant LRT genes only
+# This reduces noise and speeds up the clustering
+sig_genes <- rownames(res_lrt[which(res_lrt$padj < 0.05), ])
+vst_sig <- as.matrix(vst[sig_genes, ])
+
+# 2. Run degPatterns
+# 'time' is the column name for your depth (e.g., "condition")
+# 'col' is usually NULL or for sample replicates
+rownames(MetaData) <- MetaData$id
+vst_sig <- vst_sig[, rownames(MetaData)]
+vst_sig <- na.omit(vst_sig)
+
+# 3. Double-check the match (should return TRUE)
+all(colnames(vst_sig) == rownames(MetaData))
+clusters <- degPatterns(vst_sig, metadata = MetaData, time = "condition", summarize = "padj", col = NULL)
+
+
+# posthoc
+# 1. Extract the genes belonging to Cluster 1
+# 1. Use the matrix that contains ALL 520 significant genes
+# We need to scale it so the 'means' are comparable (Z-scores)
+mat_full <- t(scale(t(vst_sig)))
+
+# 2. Now extract Cluster 1 genes
+cluster1_genes <- clusters$df %>% filter(cluster == 1) %>% pull(genes)
+
+# 3. Subset the full matrix
+c1_mat <- mat_full[cluster1_genes, ]
+
+# 4. Calculate the average Z-score per sample
+c1_means <- colMeans(c1_mat)
+
+# 5. Create the testing dataframe
+# Make sure MetaData is synced with the columns of c1_mat
+test_df <- data.frame(
+  Zscore = c1_means, 
+  Condition = MetaData$condition
+)
+
+# 6. Run the ANOVA and Tukey
+model <- aov(Zscore ~ Condition, data = test_df)
+summary(model)
+TukeyHSD(model)
+
+# cluster 3
+# 2. Now extract Cluster 1 genes
+cluster3_genes <- clusters$df %>% filter(cluster == 3) %>% pull(genes)
+
+# 3. Subset the full matrix
+c3_mat <- mat_full[cluster3_genes, ]
+
+# 4. Calculate the average Z-score per sample
+c3_means <- colMeans(c3_mat)
+
+# 5. Create the testing dataframe
+# Make sure MetaData is synced with the columns of c1_mat
+test_df <- data.frame(
+  Zscore = c3_means, 
+  Condition = MetaData$condition
+)
+
+# 6. Run the ANOVA and Tukey
+model <- aov(Zscore ~ Condition, data = test_df)
+summary(model)
+TukeyHSD(model)
+
+# add annotation
+colnames(clusters$df) <- c("gene_id", "cluster")
+clusters$df %>% left_join(annot, by = "gene_id") -> clusters_annot
+write.csv2(clusters_annot, "degPatterns.clusters.csv")
+
+
+
+#### Venn diagrams ####
+native <- read.csv("de_genes_30v1.csv")
+trans_25v5  <- read.csv("de_genes_25v5.csv")
+trans_10v5  <- read.csv("de_genes_10v5.csv")
+trans_25v10 <- read.csv("de_genes_25v10.csv")
+
+# control
+x <- list(
+  A = native$gene_id,
+  B = trans_10v5$gene_id, 
+  G = trans_25v5$gene_id,
+  H = trans_25v10$gene_id)
+
+cont <- ggVennDiagram(x,  
+                      category.names = c("30v1", "10v5", '25v5', '25v10'),
+                      label_alpha = 0, label = "count", set_size = 3.2, label_size = 4)+
+  #scale_fill_gradient(low = "#00A9FF", high = "#f75f55", name = "DEGs count")+
+  scale_fill_gradient(low = "deepskyblue3", high = "coral1", name = "DEGs count")+
+  guides(fill = guide_colorbar(title.position = "top")) +
+  #labs(title = "Venn diagrams of shared DEGs")+
+  theme(legend.title = element_text(face = "bold"), 
+        plot.margin = margin(10, 5, 5, 5),
+        plot.title = element_text(size = 13, margin = margin(t = 9, b = 5) ),
+        legend.key.height = unit(0.4, "cm"))
+
+cont
+
+ggsave("ggvenn2.jpg", cont, width = 5, height = 5)
