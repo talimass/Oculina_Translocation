@@ -1,4 +1,7 @@
-# Oculina_Translocation
+# Physiological and transcriptomic plasticity facilitates depth acclimation in the facultatively symbiotic coral Oculina patagonica
+
+## Elizaveta Skalon1, Hagai Nativ, Liel Uziahu, Yahli Shpinner, Tali Mass
+
 
 ### Part of MOST project: Evaluating the mechanisms enabling temperate corals to persist and thrive in diverse environments 
 
