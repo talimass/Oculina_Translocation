@@ -1,4 +1,4 @@
-# Ocullina_Translocation
+# Oculina_Translocation
 
 ### Part of MOST project: Evaluating the mechanisms enabling temperate corals to persist and thrive in diverse environments 
 
