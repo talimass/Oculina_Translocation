@@ -146,7 +146,9 @@ temp_plot <- ggplot(daily_temp, aes(x = date, group = Depth)) +
   labs(x = "Date (DD/MM)", y = "Temperature (°C)") +
   guides(fill = guide_legend(override.aes = list(alpha = 0.35)), colour = "none") +
   theme_minimal(base_size = 7) +
-  figure_theme
+  figure_theme+
+  guides(fill = "none",
+         color = "none")
 
 temp_plot
 
@@ -166,22 +168,27 @@ par_plot <- ggplot(
     y = expression(mu * mol~m^{-2}~s^{-1}),
     colour = "Depth"
   ) +
-  figure_theme
+  figure_theme +
+  guides(colour = guide_legend(title = "Depth", nrow = 1))
+
 
 combined <- (par_plot / temp_plot) +
-  plot_annotation(tag_levels = "A") &
-  theme(legend.position = "right",
+  plot_annotation(tag_levels = "A") +
+  plot_layout(guides = "collect") &
+  theme(legend.position = "bottom",
+        legend.direction = "horizontal",
+        legend.title = element_text(size = 8),
+        legend.text = element_text(size = 8),
         plot.tag = element_text(size = 9, face = "bold"))
 
 combined
 
-combined
 
 ggsave(
   filename = "environmental_conditions.pdf",
   plot = combined,
   width = 8,
-  height = 10,
+  height = 11,
   units = "cm",
   device = cairo_pdf
 )
@@ -190,7 +197,7 @@ ggsave(
   filename = "environmental_conditions.jpg",
   plot = combined,
   width = 8,
-  height = 10,
+  height = 11,
   units = "cm",
   dpi = 600
 )
@@ -278,13 +285,14 @@ anova_temp_delta <- anova(m_temp_delta)
 
 anova_temp_mean
 # < 2.2e-16
+nobs(m_temp_mean)
 anova_temp_delta
 # < 2.2e-16
-
+nobs(m_temp_delta)
 # Pairwise comparisons
 
-emm_temp_mean <- emmeans(m_temp_mean, pairwise ~ Depth, adjust = "BH")
-emm_temp_delta <- emmeans(m_temp_delta, pairwise ~ Depth, adjust = "BH")
+emm_temp_mean <- emmeans(m_temp_mean, pairwise ~ Depth, adjust = "tukey")
+emm_temp_delta <- emmeans(m_temp_delta, pairwise ~ Depth, adjust = "tukey")
 
 emm_temp_mean
 # all signif
@@ -377,12 +385,14 @@ anova_par_delta <- anova(m_par_delta)
 
 anova_par_mean
 # < 2.2e-16 
+nobs(m_par_mean)
 anova_par_delta
 # < 2.2e-16 
+nobs(m_par_delta)
 # Pairwise comparisons
 
-emm_par_mean <- emmeans(m_par_mean, pairwise ~ Depth, adjust = "BH")
-emm_par_delta <- emmeans(m_par_delta, pairwise ~ Depth, adjust = "BH")
+emm_par_mean <- emmeans(m_par_mean, pairwise ~ Depth, adjust = "tukey")
+emm_par_delta <- emmeans(m_par_delta, pairwise ~ Depth, adjust = "tukey")
 
 emm_par_mean
 # all signif
