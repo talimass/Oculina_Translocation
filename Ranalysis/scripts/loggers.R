@@ -96,128 +96,105 @@ daily_par_midday <- df %>%
     .groups = "drop"
   )
 
-# Temp plot
-temp_plot <- ggplot(daily_temp, aes(x = date, y = temp, color = Depth, group = Depth)) +
-  geom_line(size = 0.4) +
-  scale_x_date(date_labels = "%d/%m", date_breaks = "14 days") +
-  labs(
-    #title = "Daily temperature",
-    x = "Date (DD/MM)",
-    y = "°C",
-    color = "Depth"
-  ) +
-  theme_minimal(base_size = 10) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-# PAR plot
-# par_plot <- ggplot(daily_par, aes(x = date, y = max_PAR, color = Depth)) +
-#   geom_line(size = 0.4) +
-#   scale_x_date(date_labels = "%d/%m", date_breaks = "14 days") +
-#   labs(
-#     title = "Daily maximum PAR",
-#     x = "Date (DD/MM)",
-#     y = "PAR (µmol/(s·m²))",
-#     color = "Depth (m)"
-#   ) +
-#   theme_minimal(base_size = 10) +
-#   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 depth_cols <- c(
   "10" = "#DC267F",
   "25" = "#785EF0",
   "45" = "#648FFF"
 )
 
-par_plot <- ggplot(daily_par_midday, aes(x = date, y = mean_midday_PAR, color = Depth)) +
-  geom_line(linewidth = 0.6) +
-  scale_x_date(date_labels = "%d/%m", date_breaks = "14 days") +
-  scale_color_manual(values = depth_cols) +
-  labs(
-    #title = "Midday average PAR",
-    x = "Date (DD/MM)",
-    y = "µmol m⁻² s⁻¹",
-    color = "Depth"
-  ) +
-  theme_minimal(base_size = 10) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-par_plot
-combined <- (par_plot / temp_plot) +
-  plot_annotation(tag_levels = "A")
-
-combined
-
-ggsave("combined_loggers.jpg", combined, width = 8, height = 7)
-
-
-# Temperature: as ribbon
-daily_temp <- df %>%
-  group_by(date, Depth) %>%
-  summarise(
-    min_temp = min(Temperature, na.rm = TRUE),
-    max_temp = max(Temperature, na.rm = TRUE),
-    .groups = "drop"
-  )
-
-# Temperature plot (min and max as ribbons )
-temp_plot <- ggplot(daily_temp, aes(x = date)) +
-  geom_ribbon(aes(ymax = max_temp, ymin = min_temp,fill = Depth), alpha = 0.7) +
-  scale_x_date(date_labels = "%d/%m", date_breaks = "14 days") +
-  scale_color_manual(values = depth_cols) +
-  labs(
-    #title = "Daily temperature",
-    x = "Date (DD/MM)",
-    y = "°C",
-    color = "Depth",
-    linetype = "Statistic"
-  ) +
-  theme_minimal(base_size = 10) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-
-# ribbons and lines
-daily_temp <- df %>%
-  group_by(date, Depth) %>%
-  summarise(
-    min_temp = min(Temperature, na.rm = TRUE),
-    max_temp = max(Temperature, na.rm = TRUE),
-    .groups = "drop"
-  )
-
-temp_plot <- ggplot(daily_temp, aes(x = date)) +
-  geom_ribbon(
-    aes(ymax = max_temp, ymin = min_temp, fill = Depth),
-    alpha = 0.35
-  ) +
-  geom_line(
-    aes(y = max_temp, color = Depth),
-    linewidth = 0.4
-  ) +
-  geom_line(
-    aes(y = min_temp, color = Depth),
-    linewidth = 0.4
-  ) +
-  scale_fill_manual(values = depth_cols) +
-  scale_color_manual(values = depth_cols) +
-  scale_x_date(date_labels = "%d/%m", date_breaks = "14 days") +
-  labs(
-    x = "Date (DD/MM)",
-    y = "°C",
-    fill = "Depth",
-    color = "Depth"
-  ) +
-  theme_minimal(base_size = 10) +
+figure_theme <- theme_minimal(base_size = 7) +
   theme(
-    axis.text.x = element_text(angle = 45, hjust = 1)
+    # Axis titles
+    axis.title = element_text(size = 8),
+    
+    # Axis tick labels
+    axis.text = element_text(size = 7),
+    axis.text.x = element_text(
+      size = 7,
+      angle = 45,
+      hjust = 1
+    ),
+    
+    # Legend
+    legend.title = element_text(size = 8),
+    legend.text = element_text(size = 8),
+    
+    # Other elements
+    plot.title = element_text(size = 8),
+    strip.text = element_text(size = 7),
+    
+    # Reduce unnecessary margins for an 8-cm-wide figure
+    plot.margin = margin(3, 3, 3, 3)
   )
+
+# Temp plot
+daily_temp <- df %>%
+  group_by(date, Depth) %>%
+  summarise(min_temp = min(Temperature, na.rm = TRUE),
+            max_temp = max(Temperature, na.rm = TRUE),
+            .groups = "drop")
+
+temp_plot <- ggplot(daily_temp, aes(x = date, group = Depth)) +
+  geom_ribbon(aes(ymin = min_temp, ymax = max_temp, fill = Depth), alpha = 0.35) +
+  geom_line(aes(y = max_temp, colour = Depth), linewidth = 0.3) +
+  geom_line(aes(y = min_temp, colour = Depth), linewidth = 0.3) +
+  scale_fill_manual(name = "Depth", values = depth_cols) +
+  scale_colour_manual(name = "Depth", values = depth_cols) +
+  scale_x_date(date_labels = "%d/%m", date_breaks = "14 days") +
+  labs(x = "Date (DD/MM)", y = "Temperature (°C)") +
+  guides(fill = guide_legend(override.aes = list(alpha = 0.35)), colour = "none") +
+  theme_minimal(base_size = 7) +
+  figure_theme
 
 temp_plot
 
+# PAR plot
+par_plot <- ggplot(
+  daily_par_midday,
+  aes(x = date, y = mean_midday_PAR, colour = Depth, group = Depth)
+) +
+  geom_line(linewidth = 0.3) +
+  scale_x_date(
+    date_labels = "%d/%m",
+    date_breaks = "14 days"
+  ) +
+  scale_colour_manual(values = depth_cols) +
+  labs(
+    x = "Date (DD/MM)",
+    y = expression(mu * mol~m^{-2}~s^{-1}),
+    colour = "Depth"
+  ) +
+  figure_theme
+
 combined <- (par_plot / temp_plot) +
-  plot_annotation(tag_levels = "A")
+  plot_annotation(tag_levels = "A") &
+  theme(legend.position = "right",
+        plot.tag = element_text(size = 9, face = "bold"))
 
 combined
 
-ggsave("combined_loggers_midday.jpg", combined, width = 8, height = 7)
+combined
+
+ggsave(
+  filename = "environmental_conditions.pdf",
+  plot = combined,
+  width = 8,
+  height = 10,
+  units = "cm",
+  device = cairo_pdf
+)
+
+ggsave(
+  filename = "environmental_conditions.jpg",
+  plot = combined,
+  width = 8,
+  height = 10,
+  units = "cm",
+  dpi = 600
+)
+
 
 
 #### statistics ####
