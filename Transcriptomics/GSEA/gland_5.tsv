@@ -1,0 +1,165 @@
+gene ID	gene name	PFAM domain	total UMIs	% UMIs	median fc	tf
+Ocupat_v02_G018722	Apcs/Crp/Mptx1/Mptx2/Nptx1/Nptx2/Nptxr/Ptx3/Ptx4	Pentaxin	20102	97.3	376.68	no
+Ocupat_v02_G029777			5047	92.27	176.18	no
+Ocupat_v02_G036250			7448	92.81	175.51	no
+Ocupat_v02_G044118			6269	25.34	132.98	no
+Ocupat_v02_G033567			6322	95.1	122.13	no
+Ocupat_v02_G029780			3031	90.53	109.15	no
+Ocupat_v02_G022182		Trefoil/Trefoil	11469	35.95	102.34	no
+Ocupat_v02_G016823			3538	97.36	88.95	no
+Ocupat_v02_G030200			2781	24.56	78.77	no
+Ocupat_v02_G036237			7812	92.21	78.09	no
+Ocupat_v02_G029968			2078	96.03	77	no
+Ocupat_v02_G036150			3785	88.81	71.25	no
+Ocupat_v02_G010694			3391	97.78	67.14	no
+Ocupat_v02_G022179		Trefoil/Trefoil	9927	26.54	63.91	no
+Ocupat_v02_G018949		ShK/ShK	3636	94.52	56.29	no
+Ocupat_v02_G039472			4007	92.03	46.28	no
+Ocupat_v02_G022181		Trefoil/Trefoil	3503	26.63	43.42	no
+Ocupat_v02_G035862			2534	87.74	42.69	no
+Ocupat_v02_G044569	Ly6m/Lynx1/Psca/Slurp2		2105	96.78	34.13	no
+Ocupat_v02_G041449			1771	40.55	33.86	no
+Ocupat_v02_G036255			970	25.83	27.92	no
+Ocupat_v02_G037113			883	45.97	27.19	no
+Ocupat_v02_G044591	Ly6m/Lynx1/Psca/Slurp2		787	94.03	22.29	no
+Ocupat_v02_G031953			692	95.58	22.16	no
+Ocupat_v02_G018717	Apcs/Crp/Mptx1/Mptx2/Nptx1/Nptx2/Nptxr/Ptx3/Ptx4	Pentaxin	1154	99.23	21.93	no
+Ocupat_v02_G000908			908	97.63	20.55	no
+Ocupat_v02_G044601	Ly6m/Lynx1/Psca/Slurp2	UPAR_LY6/UPAR_LY6/UPAR_LY6/UPAR_LY6	1201	97.09	19.81	no
+Ocupat_v02_G001039			474	91.51	17.69	no
+Ocupat_v02_G044565	Ly6m/Lynx1/Psca/Slurp2		756	95.45	17.15	no
+Ocupat_v02_G039915		Trefoil	639	11.11	16.53	no
+Ocupat_v02_G041017		CBM_14/CBM_14	486	48.94	16.38	no
+Ocupat_v02_G000909			473	89.58	15.53	no
+Ocupat_v02_G034972	Bsph2	fn2	519	86.21	15.4	no
+Ocupat_v02_G031948			359	56.18	15.19	no
+Ocupat_v02_G018730	Apcs/Crp/Mptx1/Mptx2/Nptx1/Nptx2/Nptxr/Ptx3/Ptx4	Pentaxin	477	92.98	13.14	no
+Ocupat_v02_G044536			473	91.31	11.62	no
+Ocupat_v02_G032296	Agrn/Cntnap1/Cntnap2/Cntnap3/Cntnap4/Cntnap5a/Cntnap5b/Cntnap5c	Lectin_C/EGF_CA/TLD	399	80.93	11.13	no
+Ocupat_v02_G044563	Ly6m/Lynx1/Psca/Slurp2	UPAR_LY6/UPAR_LY6/UPAR_LY6	371	93.45	9.65	no
+Ocupat_v02_G044590	Ly6m/Lynx1/Psca/Slurp2	UPAR_LY6/UPAR_LY6/UPAR_LY6/UPAR_LY6/UPAR_LY6/UPAR_LY6	374	96.89	9.64	no
+Ocupat_v02_G020921		TSP_1/TSP_1/TSP_1/TSP_1	207	63.3	9.61	no
+Ocupat_v02_G018713	Apcs/Crp/Mptx1/Mptx2/Nptx1/Nptx2/Nptxr/Ptx3/Ptx4	Pentaxin	340	86.08	9.47	no
+Ocupat_v02_G040641	Birc6	BIR/BIRC6/UQ_con	315	7.58	8.96	no
+Ocupat_v02_G037206		Cyclase	172	8.39	8.8	no
+Ocupat_v02_G034904	Myorg	DUF4968/Gal_mutarotas_2/Glyco_hydro_31	153	12.31	8.77	no
+Ocupat_v02_G031952			246	60.15	8.37	no
+Ocupat_v02_G026718		Tubulin/Tubulin_C	149	3.39	8.3	no
+Ocupat_v02_G032300	Ifi44/Ifi44l	TLD	221	79.78	8.19	no
+Ocupat_v02_G041736			518	97.37	8	no
+Ocupat_v02_G000937	Aebp1/Cpxm1/Cpxm2/Dcbld1/Dcbld2/Edil3/F5/F8/Ly75/Mfge8/Mrc1/Mrc2/Nrp1/Nrp2/Pla2r1/Rs1	PAN_1/F5_F8_type_C	474	93.31	7.94	no
+Ocupat_v02_G025223			247	96.48	7.94	no
+Ocupat_v02_G029784			153	28.54	7.12	no
+Ocupat_v02_G021984			174	91.58	7.01	no
+Ocupat_v02_G026586			167	19.44	6.94	no
+Ocupat_v02_G044570	Ly6m/Lynx1/Psca/Slurp2	UPAR_LY6	247	95.74	6.87	no
+Ocupat_v02_G040028	Galm	Aldose_epim	274	5.45	6.71	no
+Ocupat_v02_G020408		PLAT	209	15.04	6.68	no
+Ocupat_v02_G044533			412	26.41	6.16	no
+Ocupat_v02_G018858			117	3.98	6.1	no
+Ocupat_v02_G022171	Angpt1/Angpt2/Angpt4/Angptl1/Angptl2/Angptl3/Angptl4/Angptl6/Angptl7/Fcna/Fcnb/Fga/Fgb/Fgg/Fgl1/Fgl2/Fibcd1/Igsf23/Mfap4/Tnc/Tnn/Tnr/Tnxb	PAN_1/Fibrinogen_C	94	48.21	6.06	no
+Ocupat_v02_G024335			163	13.58	5.97	no
+Ocupat_v02_G031580		ApeC/PB1	259	90.24	5.93	no
+Ocupat_v02_G005111			308	93.62	5.85	no
+Ocupat_v02_G031947			133	81.6	5.83	no
+Ocupat_v02_G008318	Ly6g6d	UPAR_LY6_2	247	1.48	5.47	no
+Ocupat_v02_G004087		zf-C2H2/zf-C2H2/zf-C2H2/zf-C2H2	87	26.85	5.27	yes
+Ocupat_v02_G044537			500	85.47	5.02	no
+Ocupat_v02_G018947		ShK	351	91.17	4.88	no
+Ocupat_v02_G001005			184	78.63	4.78	no
+Ocupat_v02_G041734			346	97.46	4.76	no
+Ocupat_v02_G034902			91	7.07	4.66	no
+Ocupat_v02_G004561	Homeodomains:Noto	Homeodomain	75	91.46	4.65	yes
+Ocupat_v02_G043186			102	14.15	4.65	no
+Ocupat_v02_G032321	Ifi44/Ifi44l	TLD	97	76.98	4.6	no
+Ocupat_v02_G029208		GDA1_CD39	94	93.07	4.38	no
+Ocupat_v02_G007285	Acp2/Acp4/Acpp	His_Phos_2	131	82.39	4.37	no
+Ocupat_v02_G037247			103	6.22	4.24	no
+Ocupat_v02_G029207			168	10.32	4.23	no
+Ocupat_v02_G004577	Homeodomains:like:Noto	Homeodomain	69	64.49	4.13	yes
+Ocupat_v02_G044679	Lipc/Lipg/Liph/Lipi/Lpl/Pla1a/Pnlip/Pnliprp1/Pnliprp2	Lipase	99	47.83	4.09	no
+Ocupat_v02_G037117		Trefoil/Trefoil	184	32.34	4.07	no
+Ocupat_v02_G037474			93	94.9	4.07	no
+Ocupat_v02_G038505			138	5.8	4.06	no
+Ocupat_v02_G029206			233	93.2	4.02	no
+Ocupat_v02_G005450	Qdpr	adh_short_C2	292	2.43	4.01	no
+Ocupat_v02_G004634	Bsph2	fn2/fn2	97	77.6	3.95	no
+Ocupat_v02_G019373			93	50	3.87	no
+Ocupat_v02_G038342	Acta1/Acta2/Actb/Actbl2/Actc1/Actg1/Actg2	Actin	2011	2.48	3.87	no
+Ocupat_v02_G031573		MACPF	107	88.43	3.84	no
+Ocupat_v02_G037112		Trefoil/Trefoil/Trefoil/Trefoil	124	1.22	3.76	no
+Ocupat_v02_G038049	H1f0	Linker_histone	88	2.53	3.67	no
+Ocupat_v02_G025609		EGF_CA/EGF	140	2.1	3.66	no
+Ocupat_v02_G041774			83	93.26	3.62	no
+Ocupat_v02_G002372			63	52.94	3.45	no
+Ocupat_v02_G004630			61	30.81	3.31	no
+Ocupat_v02_G028761			70	56.91	3.31	no
+Ocupat_v02_G018726	Apcs/Crp/Mptx1/Mptx2/Nptx1/Nptx2/Nptxr/Ptx3/Ptx4		100	84.75	3.17	no
+Ocupat_v02_G031569		MACPF/ApeC	94	58.02	3.17	no
+Ocupat_v02_G006409	bZIP:Creb3l1/Creb3l2	bZIP_1	185	2.35	3.13	yes
+Ocupat_v02_G032992		Trypsin	512	82.85	3.13	no
+Ocupat_v02_G033097	Cpa1/Cpa2/Cpa3/Cpa4/Cpa5/Cpa6/Cpb1/Cpb2	Propep_M14/Peptidase_M14/Peptidase_M14	323	68.14	3.09	no
+Ocupat_v02_G032246		DUF4773/DUF4773	87	0.38	2.98	no
+Ocupat_v02_G032357	Ifi44/Ifi44l	Lectin_C/EGF_CA/TLD	83	84.69	2.89	no
+Ocupat_v02_G020776	Sytl1/Sytl2/Sytl3/Sytl4/Sytl5	C2/C2	36	4.85	2.88	no
+Ocupat_v02_G021049		CH/CH/Spectrin/Spectrin/Spectrin	41	4.91	2.84	no
+Ocupat_v02_G039170		Kunitz_BPTI	72	2.42	2.83	no
+Ocupat_v02_G019965	T-box:Tbx20	T-box	32	9.73	2.82	yes
+Ocupat_v02_G026727			175	1.56	2.78	no
+Ocupat_v02_G010805	Aldoa/Aldoart1/Aldoart2/Aldob/Aldoc	Glycolytic	811	1.83	2.75	no
+Ocupat_v02_G004615	Bsph2	fn2/fn2	69	75	2.74	no
+Ocupat_v02_G036770			40	5.63	2.7	no
+Ocupat_v02_G018770			38	27.14	2.69	no
+Ocupat_v02_G005909	Dysf/Fer1l5/Myof	FerB/C2/C2/C2/Ferlin_C	39	8.72	2.67	no
+Ocupat_v02_G034998		ig	61	37.89	2.65	no
+Ocupat_v02_G020587	Tent5a/Tent5b/Tent5c/Tent5d	NTP_transf_7	76	3.42	2.62	no
+Ocupat_v02_G007841			42	4.54	2.58	no
+Ocupat_v02_G003417	Col6a1/Col6a2/Wfdc8	VWA/VWA	106	93.81	2.57	no
+Ocupat_v02_G005392	Cpeb2/Cpeb3/Cpeb4	RRM_7/CEBP_ZZ	37	1.98	2.54	no
+Ocupat_v02_G022984	Epha1/Epha10/Epha2/Epha3/Epha4/Epha5/Epha6/Epha7/Epha8/Ephb1/Ephb2/Ephb3/Ephb4/Ephb6	Ephrin_lbd	39	44.83	2.5	no
+Ocupat_v02_G023117	Cela1/Cela2a/Cela3a/Cela3b/Ctrb1/Ctrc/Ctrl	Trypsin/Trypsin	77	80.21	2.47	no
+Ocupat_v02_G038504			55	0.62	2.47	no
+Ocupat_v02_G018233			29	13.24	2.45	no
+Ocupat_v02_G006429	HLH:Ascl1/Ascl2/Ascl3/Ascl4/Ascl5	HLH	29	1.83	2.44	yes
+Ocupat_v02_G017414	RFX:like:Rfx6	RFX_DNA_binding	27	12.68	2.44	yes
+Ocupat_v02_G030403	Rpl34	Ribosomal_L34e	1580	1.61	2.44	no
+Ocupat_v02_G006372	Rpl36a/Rpl36a-ps1/Rpl36al	Ribosomal_L44	1077	1.6	2.42	no
+Ocupat_v02_G012766			30	5.84	2.4	no
+Ocupat_v02_G022865	Agrn/Cntnap1/Cntnap2/Cntnap3/Cntnap4/Cntnap5a/Cntnap5b/Cntnap5c	Collagen/Ig_3/Ig_3/Ig_3/F5_F8_type_C	43	3.69	2.4	no
+Ocupat_v02_G003301	Cacna1a/Cacna1b/Cacna1e	Ion_trans/Ion_trans/Ion_trans/Ion_trans/GPHH/Ca_chan_IQ	30	3.91	2.39	no
+Ocupat_v02_G016014	Rpl12	Ribosomal_L11_N/Ribosomal_L11	1512	1.64	2.37	no
+Ocupat_v02_G041389			29	6.71	2.35	no
+Ocupat_v02_G038791		fn2/fn2/Lipoxygenase	53	23.14	2.24	no
+Ocupat_v02_G002884			48	4.16	2.22	no
+Ocupat_v02_G023137	Cela1/Cela2a/Cela3a/Cela3b/Ctrb1/Ctrc/Ctrl	Trypsin	160	87.43	2.22	no
+Ocupat_v02_G007716		Trypsin	251	16.13	2.21	no
+Ocupat_v02_G028217	Rps25	Ribosomal_S25	1188	1.49	2.2	no
+Ocupat_v02_G009007	Guca1a/Hpca/Hpcal1/Ncald	EF-hand_8/EF-hand_7	76	1.47	2.19	no
+Ocupat_v02_G036297			61	23.74	2.19	no
+Ocupat_v02_G021539			25	1.77	2.18	no
+Ocupat_v02_G031387	Kcnk15/Kcnk3/Kcnk9	Ion_trans_2/Ion_trans_2	28	4.58	2.18	no
+Ocupat_v02_G009000	HMGbox_Sox:Sox4/Sox11/Sox12	HMG_box	22	1.3	2.17	yes
+Ocupat_v02_G009475	Atad2/Atad2b	AAA/AAA_lid_3/Bromodomain	338	1.98	2.17	no
+Ocupat_v02_G041589	Eef1g/Vars	GST_N/GST_C/EF1G	1752	1.47	2.16	no
+Ocupat_v02_G032190	Rpl30	Ribosomal_L7Ae	829	1.46	2.15	no
+Ocupat_v02_G008590	Rpl6	Ribosomal_L6e_N/Ribosomal_L6e	1263	1.47	2.14	no
+Ocupat_v02_G017383	Rps14	Ribosomal_S11	1231	1.48	2.14	no
+Ocupat_v02_G027019	Dscam/Dscaml1	I-set/I-set/Ig_3/I-set/Ig_3/I-set/fn3/fn3/fn3/fn3/I-set/fn3	26	4.38	2.14	no
+Ocupat_v02_G021983	Rpl24	Ribosomal_L24e	1096	1.46	2.11	no
+Ocupat_v02_G032106	Mamdc2	Astacin	38	11.52	2.1	no
+Ocupat_v02_G017499	Rpl32	Ribosomal_L32e	1163	1.39	2.09	no
+Ocupat_v02_G036434	Cela1/Cela2a/Cela3a/Cela3b/Ctrb1/Ctrc/Ctrl	Trypsin	20	4.45	2.09	no
+Ocupat_v02_G032302	Ifi44/Ifi44l	Sushi/Sushi/TLD	71	73.96	2.08	no
+Ocupat_v02_G009098	Homeodomains:Tgif2	Homeobox_KN	49	2.45	2.07	yes
+Ocupat_v02_G016030	Rps24	Ribosomal_S24e	1431	1.52	2.07	no
+Ocupat_v02_G011806	Dbh/Moxd1/Moxd2	DOMON/Cu2_monooxygen/Cu2_monooxygen/Cu2_monoox_C	36	25	2.06	no
+Ocupat_v02_G037637	Rpl3/Rpl3l	Ribosomal_L3	878	1.48	2.06	no
+Ocupat_v02_G020283	Rpl21	Ribosomal_L21e	1060	1.62	2.04	no
+Ocupat_v02_G000585	Homeodomains:Isl1/Isl2	LIM/LIM/Homeodomain	45	1.64	2.03	yes
+Ocupat_v02_G028937			22	14.1	2.03	no
+Ocupat_v02_G029607			43	2.71	2.03	no
+Ocupat_v02_G038109	Mcm9/Mettl23	Methyltransf_16	356	1.57	2.03	no
+Ocupat_v02_G037251			33	2.86	2.02	no
+Ocupat_v02_G027113	Rpl35a	Ribosomal_L35Ae	902	1.41	2.01	no
+Ocupat_v02_G037371	Rpl27a	Ribosomal_L27A	1353	1.41	2.01	no
+Ocupat_v02_G027413		ubiquitin	691	1.51	2	no

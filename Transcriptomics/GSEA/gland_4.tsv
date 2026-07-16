@@ -1,0 +1,94 @@
+gene ID	gene name	PFAM domain	total UMIs	% UMIs	median fc	tf
+Ocupat_v02_G022179		Trefoil/Trefoil	13919	37.22	128.86	no
+Ocupat_v02_G022182		Trefoil/Trefoil	11850	37.14	118.01	no
+Ocupat_v02_G038504			8071	91.57	93.86	no
+Ocupat_v02_G022181		Trefoil/Trefoil	5586	42.47	81.62	no
+Ocupat_v02_G036262			20353	94.46	63.42	no
+Ocupat_v02_G043357			6154	91.48	58.17	no
+Ocupat_v02_G043353			6188	92.18	47.44	no
+Ocupat_v02_G019858		Lectin_C	2106	90	30.62	no
+Ocupat_v02_G041449			1924	44.06	28.66	no
+Ocupat_v02_G018729	Apcs/Crp/Mptx1/Mptx2/Nptx1/Nptx2/Nptxr/Ptx3/Ptx4	Pentaxin	2092	92.9	26.54	no
+Ocupat_v02_G043356			1362	90.14	22.44	no
+Ocupat_v02_G036255			1493	39.75	22.05	no
+Ocupat_v02_G038498			1988	82.15	20.99	no
+Ocupat_v02_G037247			1441	87.07	18.53	no
+Ocupat_v02_G038505			2085	87.61	14.38	no
+Ocupat_v02_G037251			1062	91.95	14.21	no
+Ocupat_v02_G038496			563	49.13	11.78	no
+Ocupat_v02_G004576	Homeodomains:like:Noto	Homeodomain	203	83.54	11.41	yes
+Ocupat_v02_G003272	Nrg1/Nrg2		212	53.81	10.03	no
+Ocupat_v02_G013512	Calm4	EF-hand_7/EF-hand_7/EF-hand_7/EF-hand_7	215	4.67	9.29	no
+Ocupat_v02_G026718		Tubulin/Tubulin_C	189	4.3	9.29	no
+Ocupat_v02_G004575	Homeodomains:like:Noto	Homeodomain	144	80	8.53	yes
+Ocupat_v02_G043354			235	89.35	8.38	no
+Ocupat_v02_G019859		CUB/CUB	292	84.88	7.73	no
+Ocupat_v02_G037280			233	1.04	7.68	no
+Ocupat_v02_G025022			858	23.74	7.27	no
+Ocupat_v02_G026844	Ly6m/Lynx1/Psca/Slurp2		317	3.49	6.68	no
+Ocupat_v02_G041450			329	61.04	6.66	no
+Ocupat_v02_G026586			215	25.03	6.59	no
+Ocupat_v02_G037112		Trefoil/Trefoil/Trefoil/Trefoil	250	2.46	6.38	no
+Ocupat_v02_G008318	Ly6g6d	UPAR_LY6_2	277	1.65	6.3	no
+Ocupat_v02_G020408		PLAT	134	9.64	5.83	no
+Ocupat_v02_G020620			119	66.11	5.79	no
+Ocupat_v02_G037206		Cyclase	90	4.39	5.59	no
+Ocupat_v02_G001765		UDG	221	85.33	5.52	no
+Ocupat_v02_G034904	Myorg	DUF4968/Gal_mutarotas_2/Glyco_hydro_31	82	6.6	5.11	no
+Ocupat_v02_G004087		zf-C2H2/zf-C2H2/zf-C2H2/zf-C2H2	78	24.07	5.02	yes
+Ocupat_v02_G034902			70	5.43	4.73	no
+Ocupat_v02_G043012		Gal_Lectin/Gal_Lectin	309	26.61	4.72	no
+Ocupat_v02_G009000	HMGbox_Sox:Sox4/Sox11/Sox12	HMG_box	73	4.31	4.46	yes
+Ocupat_v02_G036250			107	1.33	4.31	no
+Ocupat_v02_G035648		FKBP_C/EF-hand_7	120	22.77	4.08	no
+Ocupat_v02_G010188		START	83	13.01	3.89	no
+Ocupat_v02_G040028	Galm	Aldose_epim	139	2.77	3.84	no
+Ocupat_v02_G002565			68	23.94	3.8	no
+Ocupat_v02_G031942			74	8.99	3.77	no
+Ocupat_v02_G030200			163	1.44	3.74	no
+Ocupat_v02_G043011		Gal_Lectin/Gal_Lectin/Gal_Lectin/Gal_Lectin	131	11.16	3.61	no
+Ocupat_v02_G041017		CBM_14/CBM_14	73	7.35	3.53	no
+Ocupat_v02_G037113			165	8.59	3.48	no
+Ocupat_v02_G016000	HLH:like:Id1/Id2/Id3/Id4	HLH	60	4.71	3.44	yes
+Ocupat_v02_G006409	bZIP:Creb3l1/Creb3l2	bZIP_1	193	2.45	3.3	yes
+Ocupat_v02_G038342	Acta1/Acta2/Actb/Actbl2/Actc1/Actg1/Actg2	Actin	2598	3.21	3.29	no
+Ocupat_v02_G021539			36	2.55	3.27	no
+Ocupat_v02_G013511	Calm4	EF-hand_7/EF-hand_7/EF-hand_7/EF-hand_7	41	4.66	3.22	no
+Ocupat_v02_G002377			118	9.31	3.13	no
+Ocupat_v02_G018858			55	1.87	3.04	no
+Ocupat_v02_G005392	Cpeb2/Cpeb3/Cpeb4	RRM_7/CEBP_ZZ	31	1.66	2.92	no
+Ocupat_v02_G038049	H1f0	Linker_histone	71	2.04	2.91	no
+Ocupat_v02_G034295		EF-hand_5/EF-hand_5	113	85.61	2.87	no
+Ocupat_v02_G039723	zf-met:NA	zf-C2H2/zf-C2H2/zf-C2H2/zf-C2H2	37	4.8	2.7	yes
+Ocupat_v02_G026645			41	2.93	2.67	no
+Ocupat_v02_G009007	Guca1a/Hpca/Hpcal1/Ncald	EF-hand_8/EF-hand_7	83	1.6	2.54	no
+Ocupat_v02_G036941	Aebp1/Cpxm1/Cpxm2/Dcbld1/Dcbld2/Edil3/F5/F8/Ly75/Mfge8/Mrc1/Mrc2/Nrp1/Nrp2/Pla2r1/Rs1	F5_F8_type_C/F5_F8_type_C/F5_F8_type_C/F5_F8_type_C/F5_F8_type_C/F5_F8_type_C/F5_F8_type_C/F5_F8_type_C/F5_F8_type_C/F5_F8_type_C/F5_F8_type_C/F5_F8_type_C/TSP_1/TSP_1/TSP_1/TSP_1/TSP_1/TSP_1/TSP_1	121	9.01	2.48	no
+Ocupat_v02_G035261		C8/TIL/C8	41	3.5	2.46	no
+Ocupat_v02_G017698			116	10.31	2.45	no
+Ocupat_v02_G021261	Mos	Pkinase	23	3.22	2.41	no
+Ocupat_v02_G041402			72	1.26	2.41	no
+Ocupat_v02_G035862			64	2.22	2.4	no
+Ocupat_v02_G034066			21	1.93	2.39	no
+Ocupat_v02_G032528	Alk/Ltk	Gly_rich	38	14.45	2.37	no
+Ocupat_v02_G007910	Cd40lg/Fasl/Lta/Ltb/Tnf/Tnfsf10/Tnfsf11/Tnfsf14/Tnfsf15	TNF	35	4.28	2.34	no
+Ocupat_v02_G018536	Apcs/Crp/Mptx1/Mptx2/Nptx1/Nptx2/Nptxr/Ptx3/Ptx4	Pentaxin	42	73.68	2.33	no
+Ocupat_v02_G022553	Phc1/Phc2/Phc3	SAM_1	45	3.59	2.33	no
+Ocupat_v02_G027962			53	15.5	2.32	no
+Ocupat_v02_G025143		CBM_14/TSP_1/CBM_14	50	1.2	2.31	no
+Ocupat_v02_G036780			41	8.6	2.28	no
+Ocupat_v02_G032246		DUF4773/DUF4773	44	0.19	2.2	no
+Ocupat_v02_G020587	Tent5a/Tent5b/Tent5c/Tent5d	NTP_transf_7	46	2.07	2.17	no
+Ocupat_v02_G031252			44	6.24	2.17	no
+Ocupat_v02_G018770			26	18.57	2.16	no
+Ocupat_v02_G036425			24	19.2	2.16	no
+Ocupat_v02_G028625		GDA1_CD39	55	16.98	2.14	no
+Ocupat_v02_G002379			24	5.32	2.13	no
+Ocupat_v02_G027958			51	72.86	2.13	no
+Ocupat_v02_G029553		PID_2	23	5.84	2.13	no
+Ocupat_v02_G041389			22	5.09	2.13	no
+Ocupat_v02_G003275	Nrg1/Nrg2	EGF	26	11.87	2.12	no
+Ocupat_v02_G043186			28	3.88	2.1	no
+Ocupat_v02_G043366	Cth	Cys_Met_Meta_PP	266	1.82	2.09	no
+Ocupat_v02_G017414	RFX:like:Rfx6	RFX_DNA_binding	19	8.92	2.08	yes
+Ocupat_v02_G033567			33	0.5	2.08	no
+Ocupat_v02_G005909	Dysf/Fer1l5/Myof	FerB/C2/C2/C2/Ferlin_C	18	4.03	2.02	no
