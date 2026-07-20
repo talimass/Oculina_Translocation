@@ -28,7 +28,6 @@ physio$Depth <- factor(
   levels = c("10", "25", "45"),
   labels = c("T10", "T25", "T45")
 )
-physio <- na.omit(physio)
 physio$Colony = as.factor(physio$Colony)
 # adding the same theme to each plot
 mytheme = theme_bw()+
@@ -99,6 +98,7 @@ growth <- ggplot(physio.growth, aes(y = growth_cm2_month, x = Depth)) +
 
 growth
 #### protein ####
+physio <- na.omit(physio)
 
 shapiro.test(physio$protein_ug_ml) #  normal  
 leveneTest(protein_ug_ml~Depth,d=physio) # variance is ok
