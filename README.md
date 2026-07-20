@@ -16,9 +16,9 @@ We recovered the corals during October-December 2024
 
 We will assess the corals for gene expression, morphology, biochemical and physiological endpoints. 
 
-![alt text](Ranalysis/output/PHOTO-2024-02-12-15-35-08.jpg) 
+![alt text](Ranalysis/data/PHOTO-2024-02-12-15-35-08.jpg) 
 
-![alt text](Ranalysis/output/PHOTO-2024-06-26-09-07-12.jpg)
+![alt text](Ranalysis/data/PHOTO-2024-06-26-09-07-12.jpg)
 
 
 
