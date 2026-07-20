@@ -27,5 +27,3 @@ Significant group differences were indicated with compact letter displays.
 [scripts](https://github.com/talimass/Oculina_Translocation/tree/main/Ranalysis/scripts) folder contains R scripts used for analysis:
 - [loggers.R](https://github.com/talimass/Oculina_Translocation/blob/main/Ranalysis/scripts/loggers.R) generates PAR and temperature plots and statistically compares environmental data
 - [physio_Oc.R](https://github.com/talimass/Oculina_Translocation/blob/main/Ranalysis/scripts/physio_Oc.R) performs the statistical analysis and visualization of physiolofgical and photophysiological data
-- 
-
