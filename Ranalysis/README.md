@@ -15,15 +15,19 @@ Significant group differences were indicated with compact letter displays from p
 Photophysiology data was available for initial 3m corals (I3 group), corals, translocated to 10m and 25m (groups T10 and T25), as well as to the end-point control at 3m (depth C3). The change of photophysiological parameters across different depths was assessed and visualized.
 Significant group differences were indicated with compact letter displays. 
 
+### Skeletal thickness ###
 
+Mean skeletal thickness was compared between native shallow (N3) and mesophotic (N30) colonies. 
 
 [data](https://github.com/talimass/Oculina_Translocation/tree/main/Ranalysis/data) folder contains raw data needed for analysis:
 
 - [miniPAR logger files](https://github.com/talimass/Oculina_Translocation/tree/main/Ranalysis/data/miniPAR%20files%206-9.2024)
 - [FIRe photophysiology measurements](https://github.com/talimass/Oculina_Translocation/blob/main/Ranalysis/data/Annotated_FIRe_data.csv)
 - [physiological measurements](https://github.com/talimass/Oculina_Translocation/blob/main/Ranalysis/data/physiological_data.csv)
+- [skeletal thickness](https://github.com/talimass/Oculina_Translocation/blob/main/Ranalysis/data/skeletal_thickness.csv)
 - [sample description](https://github.com/talimass/Oculina_Translocation/blob/main/Ranalysis/data/Skeleton%20id.jpeg)
 
 [scripts](https://github.com/talimass/Oculina_Translocation/tree/main/Ranalysis/scripts) folder contains R scripts used for analysis:
 - [loggers.R](https://github.com/talimass/Oculina_Translocation/blob/main/Ranalysis/scripts/loggers.R) generates PAR and temperature plots and statistically compares environmental data
 - [physio_Oc.R](https://github.com/talimass/Oculina_Translocation/blob/main/Ranalysis/scripts/physio_Oc.R) performs the statistical analysis and visualization of physiolofgical and photophysiological data
+- [thickness.R](https://github.com/talimass/Oculina_Translocation/blob/main/Ranalysis/scripts/thickness.R) compares mean skeletal thickness across depths 
