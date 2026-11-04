@@ -1,4 +1,4 @@
-# Physiological and transcriptomic plasticity facilitates depth acclimation in the facultatively symbiotic coral *Oculina patagonica*
+# Physiological and transcriptomic plasticity facilitates depth acclimatization in the facultatively symbiotic coral *Oculina patagonica*
 
 ## Elizaveta Skalon, Hagai Nativ, Liel Uziahu, Yahli Shpinner, Tali Mass
 
