@@ -242,20 +242,16 @@ temp_summary_article <- daily_temp_stats %>%
   group_by(Depth) %>%
   summarise(
     mean_temp = mean(temp_mean, na.rm = TRUE),
-    se_temp = sd(temp_mean, na.rm = TRUE) / sqrt(n()),
+    se_temp = sd(temp_mean, na.rm = TRUE) / sqrt(sum(!is.na(temp_mean))),
     
-    min_temp = mean(temp_min, na.rm = TRUE),
-    se_min_temp = sd(temp_min, na.rm = TRUE) / sqrt(n()),
-    
-    max_temp = mean(temp_max, na.rm = TRUE),
-    se_max_temp = sd(temp_max, na.rm = TRUE) / sqrt(n()),
-    
+    min_temp = min(temp_min, na.rm = TRUE),
+    max_temp = max(temp_max, na.rm = TRUE),
     delta_temp = mean(temp_delta, na.rm = TRUE),
     se_delta_temp = sd(temp_delta, na.rm = TRUE) / sqrt(n()),
     
     n_days = n(),
     .groups = "drop"
-  )%>%
+  ) %>%
   mutate(
     across(
       .cols = where(is.numeric) & !n_days,
@@ -268,7 +264,7 @@ temp_summary_article
 
 # Export temperature tables
 
-write_csv(temp_summary_article, "temperature_summary_article.csv")
+write.csv2(temp_summary_article, "temperature_summary_article.csv")
 
 
 # Temperature mixed models
@@ -332,11 +328,8 @@ par_summary_article <- daily_par_stats %>%
     mean_midday_PAR = mean(midday_PAR_mean, na.rm = TRUE),
     se_midday_PAR = sd(midday_PAR_mean, na.rm = TRUE) / sqrt(n()),
     
-    min_midday_PAR = mean(midday_PAR_min, na.rm = TRUE),
-    se_min_midday_PAR = sd(midday_PAR_min, na.rm = TRUE) / sqrt(n()),
-    
-    max_midday_PAR = mean(midday_PAR_max, na.rm = TRUE),
-    se_max_midday_PAR = sd(midday_PAR_max, na.rm = TRUE) / sqrt(n()),
+    min_midday_PAR = min(midday_PAR_min, na.rm = TRUE),
+    max_midday_PAR = max(midday_PAR_max, na.rm = TRUE),
     
     delta_midday_PAR = mean(midday_PAR_delta, na.rm = TRUE),
     se_delta_midday_PAR = sd(midday_PAR_delta, na.rm = TRUE) / sqrt(n()),
@@ -357,7 +350,7 @@ par_summary_article
 # Export PAR tables
 
 
-write_csv(par_summary_article, "PAR_summary_article.csv")
+write.csv2(par_summary_article, "PAR_summary_article.csv")
 
 
 # Log-transform PAR variables
